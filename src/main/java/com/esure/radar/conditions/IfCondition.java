@@ -3,13 +3,14 @@ package com.esure.radar.conditions;
 import java.util.List;
 
 import com.esure.radar.calculation.steps.CalculationStep;
+import com.esure.radar.conditions.logic.LogicExpression;
 
 public class IfCondition extends ConditionalCalculations implements ConditionInterface
 {
 
-    protected IfCondition(List<CalculationStep> calculations)
+    protected IfCondition(LogicExpression expression, List<CalculationStep> calculations)
     {
-        super(calculations);
+        super(expression, calculations);
     }
 
     @Override
