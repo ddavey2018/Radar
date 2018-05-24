@@ -1,15 +1,7 @@
 package com.esure.radar.conditions.logic;
 
-import com.esure.radar.conditions.ConditionalExpression;
+import com.esure.radar.calculation.LogicComponent;
 
-public abstract class LogicExpression implements LogicExpressionInterface
+public interface LogicExpression extends LogicComponent
 {
-    protected ConditionalExpression conditionOne;
-    protected ConditionalExpression[] otherExpressions;
-
-    protected LogicExpression(ConditionalExpression conditionOne, ConditionalExpression... otherExpressions)
-    {
-        this.conditionOne = conditionOne;
-        this.otherExpressions = otherExpressions;
-    }
 }

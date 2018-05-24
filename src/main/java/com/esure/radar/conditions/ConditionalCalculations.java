@@ -3,14 +3,14 @@ package com.esure.radar.conditions;
 import java.util.List;
 
 import com.esure.radar.calculation.steps.CalculationStep;
-import com.esure.radar.conditions.logic.LogicExpression;
+import com.esure.radar.conditions.logic.AbstractLogicExpression;
 
 public abstract class ConditionalCalculations
 {
     protected List<CalculationStep> calculations;
-    protected LogicExpression expression;
+    protected AbstractLogicExpression expression;
 
-    protected ConditionalCalculations(LogicExpression expression, List<CalculationStep> calculations)
+    protected ConditionalCalculations(AbstractLogicExpression expression, List<CalculationStep> calculations)
     {
         this.expression = expression;
         this.calculations = calculations;

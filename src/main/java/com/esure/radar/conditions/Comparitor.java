@@ -1,6 +1,7 @@
 package com.esure.radar.conditions;
 
-public interface Comparitor
+import com.esure.radar.calculation.LogicComponent;
+
+public interface Comparitor extends LogicComponent
 {
-    public boolean isTrue();
 }

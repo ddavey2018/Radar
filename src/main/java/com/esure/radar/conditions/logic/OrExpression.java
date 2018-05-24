@@ -1,28 +1,29 @@
 package com.esure.radar.conditions.logic;
 
-import com.esure.radar.conditions.ConditionalExpression;
+import com.esure.radar.calculation.LogicComponent;
 
-public class OrExpression extends LogicExpression
+public class OrExpression extends AbstractLogicExpression
 {
-    public OrExpression(ConditionalExpression conditionOne, ConditionalExpression... otherExpressions)
+    public OrExpression(LogicComponent comparitorOne, LogicComponent comparitorTwo, LogicComponent... otherComparitors)
     {
-        super(conditionOne, otherExpressions);
+        super(comparitorOne, comparitorTwo, otherComparitors);
     }
 
     @Override
     public boolean isTrue()
     {
-        boolean isTrue = conditionOne.isTrue();
+        boolean isTrue = comparitorOne.isTrue() || comparitorTwo.isTrue();
 
         if (isTrue)
         {
             return isTrue;
         }
 
-        if (otherExpressions != null && otherExpressions.length > 0)
+        if (otherComparitors != null && otherComparitors.length > 0)
         {
-            for (ConditionalExpression expression : otherExpressions)
+            for (LogicComponent expression : otherComparitors)
             {
+                isTrue = expression.isTrue();
                 if (expression.isTrue())
                 {
                     return isTrue;
