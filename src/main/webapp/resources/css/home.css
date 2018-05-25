@@ -1,0 +1,41 @@
+header i.material-icons{
+	margin-top:10px;
+}
+
+body{
+	    background-color: #EFEFEF;
+}
+
+#inputs{
+	padding: 10px;
+	background-color:#fff;
+}
+
+#inputs button{
+	margin-left:20px;
+	width: 35px;
+	height: 35px;
+	min-width: 35px;
+}
+
+.float-left{
+	float:left;
+}
+
+.float-right{
+	float:right;
+}
+
+button.cancel{
+	background-color:#fff;
+}
+
+.popup{
+	position:fixed;
+	z-index: 100;
+	margin:auto;
+}
+
+.mdl-card__content{
+	padding:10px;
+}
