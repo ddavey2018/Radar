@@ -14,6 +14,10 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>
+	<script src="resources/js/jquery-ui.min.js"></script>
+	<script src="resources/js/popup.js"></script>
+<script defer src="resources/js/getmdl-select.min.js"></script>
+<link rel="stylesheet" href="resources/css/getmdl-select.min.css">
 </head>
 <body>
 
@@ -41,41 +45,48 @@
 			<div id="inputs">
 				Input Parameters
 				<button
-					class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+					class="add-input mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
 					<i class="material-icons">add</i>
 				</button>
 			</div>
-
-			<div class="demo-card-wide mdl-card mdl-shadow--2dp popup">
+			<div
+				class="demo-card-wide mdl-card mdl-shadow--16dp popup mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet hide">
 				<div class="mdl-card__title">
-					<h2 class="mdl-card__title-text">Welcome</h2>
+					<h2 class="mdl-card__title-text">Add Input Parameters</h2>
 				</div>
 				<div class="mdl-card__content">
-					<div
-						class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input class="mdl-textfield__input" type="text"
-							pattern="-?[0-9]*(\.[0-9]+)?" id="sample4"> <label
-							class="mdl-textfield__label" for="sample4">Input Name</label> <span
-							class="mdl-textfield__error"></span>
+					<div class="mdl-grid">
+						<div
+							class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--6-col">
+							<input class="mdl-textfield__input" type="text" id="inputName">
+							<label class="mdl-textfield__label" for="sample3">Input Name</label>
+						</div>
+						<div class="mdl-cell mdl-cell--6-col"></div>
+						<!-- Simple Select with arrow -->
+						<div
+							class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+							<input type="text" value="" class="mdl-textfield__input"
+								id="sample4" readonly> <input type="hidden" value=""
+								name="sample4"> <i
+								class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+							<label for="sample4" class="mdl-textfield__label">Input
+								Type</label>
+							<ul for="sample4"
+								class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+								<li class="mdl-menu__item" data-val="DEU">Integer</li>
+								<li class="mdl-menu__item" data-val="BLR">Long</li>
+								<li class="mdl-menu__item" data-val="RUS">Float</li>
+								<li class="mdl-menu__item" data-val="RUS">Double</li>
+							</ul>
+						</div>
 					</div>
-					<!-- Simple Select with arrow -->
-    <div class="mdl-textfield mdl-js-textfield getmdl-select">
-        <input type="text" value="" class="mdl-textfield__input" id="sample2" readonly>
-        <input type="hidden" value="" name="sample2">
-        <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-        <label for="sample2" class="mdl-textfield__label">Input Type</label>
-        <ul for="sample2" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-            <li class="mdl-menu__item" data-val="DEU">Integer</li>
-            <li class="mdl-menu__item" data-val="BLR">Long</li>
-            <li class="mdl-menu__item" data-val="RUS">Float</li>
-            <li class="mdl-menu__item" data-val="RUS">Double</li>
-        </ul>
-    </div>
+
+
 				</div>
 
 				<div class="mdl-card__actions mdl-card--border">
 					<button
-						class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+						class="add mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
 						Add</button>
 					<!-- Raised button with ripple -->
 					<button
@@ -89,74 +100,31 @@
 					</button>
 				</div>
 			</div>
-
-			<footer class="mdl-mega-footer">
-			<div class="mdl-mega-footer__middle-section">
-
-				<div class="mdl-mega-footer__drop-down-section">
-					<input class="mdl-mega-footer__heading-checkbox" type="checkbox"
-						checked>
-					<h1 class="mdl-mega-footer__heading">Features</h1>
-					<ul class="mdl-mega-footer__link-list">
-						<li><a href="#">About</a></li>
-						<li><a href="#">Terms</a></li>
-						<li><a href="#">Partners</a></li>
-						<li><a href="#">Updates</a></li>
-					</ul>
-				</div>
-
-				<div class="mdl-mega-footer__drop-down-section">
-					<input class="mdl-mega-footer__heading-checkbox" type="checkbox"
-						checked>
-					<h1 class="mdl-mega-footer__heading">Details</h1>
-					<ul class="mdl-mega-footer__link-list">
-						<li><a href="#">Specs</a></li>
-						<li><a href="#">Tools</a></li>
-						<li><a href="#">Resources</a></li>
-					</ul>
-				</div>
-
-				<div class="mdl-mega-footer__drop-down-section">
-					<input class="mdl-mega-footer__heading-checkbox" type="checkbox"
-						checked>
-					<h1 class="mdl-mega-footer__heading">Technology</h1>
-					<ul class="mdl-mega-footer__link-list">
-						<li><a href="#">How it works</a></li>
-						<li><a href="#">Patterns</a></li>
-						<li><a href="#">Usage</a></li>
-						<li><a href="#">Products</a></li>
-						<li><a href="#">Contracts</a></li>
-					</ul>
-				</div>
-
-				<div class="mdl-mega-footer__drop-down-section">
-					<input class="mdl-mega-footer__heading-checkbox" type="checkbox"
-						checked>
-					<h1 class="mdl-mega-footer__heading">FAQ</h1>
-					<ul class="mdl-mega-footer__link-list">
-						<li><a href="#">Questions</a></li>
-						<li><a href="#">Answers</a></li>
-						<li><a href="#">Contact us</a></li>
-					</ul>
-				</div>
-
-			</div>
-
-			<div class="mdl-mega-footer__bottom-section">
-				<div class="mdl-logo">Title</div>
-				<ul class="mdl-mega-footer__link-list">
-					<li><a href="#">Help</a></li>
-					<li><a href="#">Privacy & Terms</a></li>
-				</ul>
-			</div>
-
-			</footer>
 		</div>
-		</main>
+	</div>
+	</main>
 	</div>
 	<script>
-		$('#inputs button').click(function(evt) {
-			alert("sfdsf");
+		$('body').popup({
+			title : 'Add Input Parameters',
+			buttons : [
+				{caption : 'Add'},
+				{caption : 'Cancel'}
+					]
+		});
+		$('#inputs').on('click','.mdl-chip--deletable button',function(evt){
+			$(evt.target).closest('.mdl-chip--deletable').remove();
+		});
+		$('.popup .add').click(function(evt){
+			$('<span class="mdl-chip mdl-chip--deletable">'+
+				    '<span class="mdl-chip__text">'+$('.popup #inputName').val()+'</span>'+
+				    '<button type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button>'+
+				'</span>').insertBefore($('#inputs .add-input'));
+		});
+		$('#inputs button,.popup button').click(function(evt) {
+			$('.popup').toggleClass('hide');
+			
+			$('.popup input').val('');
 		});
 	</script>
 </body>

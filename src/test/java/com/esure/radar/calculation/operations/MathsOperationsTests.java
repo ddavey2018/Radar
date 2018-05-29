@@ -35,7 +35,7 @@ public class MathsOperationsTests
     @Test
     public void testOperations()
     {
-        int factor = 2, power = 4;
+        int factor = 2, power = 3;
 
         Class<? extends Operation> operationClass = Multiply.class;
         testOperation(operationClass, factor, power, (int) Math.pow(factor, power));
@@ -44,7 +44,7 @@ public class MathsOperationsTests
         testOperation(operationClass, factor, power, getExpectedDivisionResult(factor, power));
 
         operationClass = Minus.class;
-        testOperation(operationClass, factor, power, 2 - 2 - 2 - 2);
+        testOperation(operationClass, factor, power, getExpectedAubtrationResult(factor,power));
 
         operationClass = Plus.class;
         testOperation(operationClass, factor, power, factor * power);
@@ -52,10 +52,20 @@ public class MathsOperationsTests
 
     private Number getExpectedDivisionResult(int factor, int power)
     {
-        double result = (double) factor / (double) power;
-        for (int index = 0; index < power - 1; index++)
+        double result = (double) factor / (double) factor;
+        for (int index = 2; index < power; index++)
         {
             result = result / factor;
+        }
+        return result;
+    }
+    
+    private Number getExpectedAubtrationResult(int factor, int power)
+    {
+        double result = (double) factor - (double) factor;
+        for (int index = 2; index < power; index++)
+        {
+            result = result - factor;
         }
         return result;
     }
