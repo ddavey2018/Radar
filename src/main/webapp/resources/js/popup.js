@@ -4,6 +4,9 @@ $.widget( "esure.popup", {
 	_init : function(){
 		this._createPopup();
 		this._createButtons();
+		if(this.options.afterInit){
+			this.options.afterInit();
+		}
 	},
 	
 	_createPopup : function(){
@@ -15,19 +18,36 @@ $.widget( "esure.popup", {
 		$h2Title.addClass('mdl-card__title-text').text(this.options.title);
 		$titleDiv.append($h2Title);
 		$popup.append($titleDiv);
-		$(this.element).append($popup);
+		
 		var $content = $('<div></div>');
 		$content.append(this.options.content);
 		$content.addClass('mdl-card__content')
 		$popup.append($content);
+		var $footerDiv = $('<div></div>');
+		$footerDiv.addClass('mdl-card__actions mdl-card--border footer');
+		$popup.append($footerDiv);
 		this.$popup = $popup
+		$(this.element).append($popup);
 	},
 
 	_createButtons : function(){
 		if(this.options.buttons){
+			var $buttonContainer = this.$popup.find('.footer');
+			var $button = null;
 			$.each(this.options.buttons,function(index,btn){
-				console.log(btn);
+				$button = $('<button></button>');
+				$button.addClass('mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect '+(btn.floatLeft ? '' : 'float-right'));
+				if(btn.accent){
+					$button.addClass('mdl-button--accent');
+				}
+				$button.text(btn.caption);
+				$buttonContainer.append($button);
+				$button.click(btn.onClick);
 			});
 		}
+	},
+	
+	_destroy : function(){
+		this.$popup.remove();
 	}
 });

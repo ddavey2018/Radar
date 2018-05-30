@@ -16,7 +16,7 @@
 	crossorigin="anonymous"></script>
 	<script src="resources/js/jquery-ui.min.js"></script>
 	<script src="resources/js/popup.js"></script>
-<script defer src="resources/js/getmdl-select.min.js"></script>
+<script defer src="resources/js/getmdl-select.js"></script>
 <link rel="stylesheet" href="resources/css/getmdl-select.min.css">
 </head>
 <body>
@@ -44,88 +44,53 @@
 		<div class="page-content">
 			<div id="inputs">
 				Input Parameters
-				<button
-					class="add-input mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+				<button id="add-input"
+					class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
 					<i class="material-icons">add</i>
 				</button>
 			</div>
-			<div
-				class="demo-card-wide mdl-card mdl-shadow--16dp popup mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet hide">
-				<div class="mdl-card__title">
-					<h2 class="mdl-card__title-text">Add Input Parameters</h2>
-				</div>
-				<div class="mdl-card__content">
-					<div class="mdl-grid">
-						<div
-							class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--6-col">
-							<input class="mdl-textfield__input" type="text" id="inputName">
-							<label class="mdl-textfield__label" for="sample3">Input Name</label>
-						</div>
-						<div class="mdl-cell mdl-cell--6-col"></div>
-						<!-- Simple Select with arrow -->
-						<div
-							class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
-							<input type="text" value="" class="mdl-textfield__input"
-								id="sample4" readonly> <input type="hidden" value=""
-								name="sample4"> <i
-								class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-							<label for="sample4" class="mdl-textfield__label">Input
-								Type</label>
-							<ul for="sample4"
-								class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-								<li class="mdl-menu__item" data-val="DEU">Integer</li>
-								<li class="mdl-menu__item" data-val="BLR">Long</li>
-								<li class="mdl-menu__item" data-val="RUS">Float</li>
-								<li class="mdl-menu__item" data-val="RUS">Double</li>
-							</ul>
-						</div>
-					</div>
-
-
-				</div>
-
-				<div class="mdl-card__actions mdl-card--border">
-					<button
-						class="add mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-						Add</button>
-					<!-- Raised button with ripple -->
-					<button
-						class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect float-right cancel">
-						Cancel</button>
-				</div>
-				<div class="mdl-card__menu">
-					<button
-						class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-						<i class="material-icons">share</i>
-					</button>
-				</div>
-			</div>
 		</div>
-	</div>
+		<div id="hiddenContent"></div>
 	</main>
-	</div>
 	<script>
-		$('body').popup({
-			title : 'Add Input Parameters',
-			buttons : [
-				{caption : 'Add'},
-				{caption : 'Cancel'}
-					]
+	$(document).ready(function(){
+		
+		$('#add-input').click(function(){
+			$("<div></div>").load("resources/html/addInput.html",function(resp){
+				addInputPopup(resp);
+			});
 		});
+			
+			addInputPopup = function(content){
+				$('body').popup({
+					title : 'Add Input Parameters',
+					buttons : [
+						{caption : 'Add',floatLeft : true,accent:true,onClick:function(evt){
+							$('<span class="mdl-chip mdl-chip--deletable">'+
+								    '<span class="mdl-chip__text">'+$('.popup #inputName').val()+'</span>'+
+								    '<button type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button>'+
+								'</span>').insertBefore($('#inputs .add-input'));
+							$('body').popup('destroy');
+						}},
+						{caption : 'Cancel',onClick:function(evt){
+							$('body').popup('destroy');
+						}}
+							],
+					content : content,
+					afterInit : function(){
+						componentHandler.upgradeElements($('.mdl-textfield,.mdl-checkbox').get());
+					}
+				});
+			}
+			
+	
+		//	getmdlSelect
+		//	addInputPopup();
 		$('#inputs').on('click','.mdl-chip--deletable button',function(evt){
 			$(evt.target).closest('.mdl-chip--deletable').remove();
 		});
-		$('.popup .add').click(function(evt){
-			$('<span class="mdl-chip mdl-chip--deletable">'+
-				    '<span class="mdl-chip__text">'+$('.popup #inputName').val()+'</span>'+
-				    '<button type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button>'+
-				'</span>').insertBefore($('#inputs .add-input'));
-		});
-		$('#inputs button,.popup button').click(function(evt) {
-			$('.popup').toggleClass('hide');
-			
-			$('.popup input').val('');
-		});
+	});
+	
 	</script>
 </body>
 </html>
