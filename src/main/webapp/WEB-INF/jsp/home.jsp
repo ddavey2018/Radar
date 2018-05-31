@@ -70,6 +70,13 @@
 								    '<span class="mdl-chip__text">'+$('.popup #inputName').val()+'</span>'+
 								    '<button type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button>'+
 								'</span>').insertBefore($('#inputs .add-input'));
+							var inputJson = {
+							};
+							var inputFormSerialized = $('.add-input-content form').serializeArray();
+							$.each(inputFormSerialized,function(index,field){
+								inputJson[field.name] = field.value;
+							});
+							$('#inputs .mdl-chip:last').data(inputJson);
 							$('body').popup('destroy');
 						}},
 						{caption : 'Cancel',onClick:function(evt){
