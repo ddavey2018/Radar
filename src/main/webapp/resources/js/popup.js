@@ -41,6 +41,9 @@ $.widget( "esure.popup", {
 					$button.addClass('mdl-button--accent');
 				}
 				$button.text(btn.caption);
+				if(btn.disabled){
+					$button.prop('disabled','disabled');
+				}
 				$buttonContainer.append($button);
 				$button.click(btn.onClick);
 			});

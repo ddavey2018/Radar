@@ -65,7 +65,7 @@
 				$('body').popup({
 					title : 'Add Input Parameters',
 					buttons : [
-						{caption : 'Add',floatLeft : true,accent:true,onClick:function(evt){
+						{caption : 'Add',floatLeft : true,accent:true,disabled:true,onClick:function(evt){
 							$('<span class="mdl-chip mdl-chip--deletable">'+
 								    '<span class="mdl-chip__text">'+$('.popup #inputName').val()+'</span>'+
 								    '<button type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button>'+
@@ -86,6 +86,8 @@
 					content : content,
 					afterInit : function(){
 						componentHandler.upgradeElements($('.mdl-textfield,.mdl-checkbox').get());
+						getmdlSelect.init('.getmdl-select');
+						
 					}
 				});
 			}
