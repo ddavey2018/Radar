@@ -46,3 +46,9 @@ overflow: visible;
 .mdl-card__content{
 	padding:10px;
 }
+
+#logic{
+	margin:10px;
+	width:inherit;
+	overflow:visible;
+}

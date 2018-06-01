@@ -8,14 +8,16 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet"
-	href="https://code.getmdl.io/1.3.0/material.indigo-red.min.css">
+	href="https://code.getmdl.io/1.3.0/material.blue-red.min.css">
 <link rel="stylesheet" href="resources/css/home.css">
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>
-	<script src="resources/js/jquery-ui.min.js"></script>
-	<script src="resources/js/popup.js"></script>
+<script src="resources/js/jquery-ui.min.js"></script>
+<script src="resources/js/popup.js"></script>
+<script src="resources/js/expressionEditor.js"></script>
+<link rel="stylesheet" href="resources/css/expressionEditor.css">
 <script defer src="resources/js/getmdl-select.js"></script>
 <link rel="stylesheet" href="resources/css/getmdl-select.min.css">
 </head>
@@ -49,57 +51,108 @@
 					<i class="material-icons">add</i>
 				</button>
 			</div>
+			<div class="mdl-card mdl-shadow--2dp" id="logic">
+				<div class="mdl-card__content"></div>
+			</div>
 		</div>
-		<div id="hiddenContent"></div>
-	</main>
-	<script>
-	$(document).ready(function(){
-		
-		$('#add-input').click(function(){
-			$("<div></div>").load("resources/html/addInput.html",function(resp){
-				addInputPopup(resp);
-			});
-		});
-			
-			addInputPopup = function(content){
-				$('body').popup({
-					title : 'Add Input Parameters',
-					buttons : [
-						{caption : 'Add',floatLeft : true,accent:true,disabled:true,onClick:function(evt){
-							$('<span class="mdl-chip mdl-chip--deletable">'+
-								    '<span class="mdl-chip__text">'+$('.popup #inputName').val()+'</span>'+
-								    '<button type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button>'+
-								'</span>').insertBefore($('#inputs .add-input'));
-							var inputJson = {
-							};
-							var inputFormSerialized = $('.add-input-content form').serializeArray();
-							$.each(inputFormSerialized,function(index,field){
-								inputJson[field.name] = field.value;
+		</main>
+		<script>
+			$(document)
+					.ready(
+							function() {
+
+								$('#add-input')
+										.click(
+												function() {
+													$("<div></div>")
+															.load(
+																	"resources/html/addInput.html",
+																	function(
+																			resp) {
+																		addInputPopup(resp);
+																	});
+												});
+
+								addInputPopup = function(content) {
+									$('body')
+											.popup(
+													{
+														title : 'Add Input Parameters',
+														buttons : [
+																{
+																	caption : 'Add',
+																	floatLeft : true,
+																	accent : true,
+																	onClick : function(
+																			evt) {
+																		$(
+																				'<span class="mdl-chip mdl-chip--deletable">'
+																						+ '<span class="mdl-chip__text">'
+																						+ $(
+																								'.popup #inputName')
+																								.val()
+																						+ '</span>'
+																						+ '<button type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button>'
+																						+ '</span>')
+																				.insertBefore(
+																						$('#inputs #add-input'));
+																		var inputJson = {};
+																		var inputFormSerialized = $(
+																				'.add-input-content form')
+																				.serializeArray();
+																		$
+																				.each(
+																						inputFormSerialized,
+																						function(
+																								index,
+																								field) {
+																							inputJson[field.name] = field.value;
+																						});
+																		$(
+																				'#inputs .mdl-chip:last')
+																				.data(
+																						inputJson);
+																		$(
+																				'body')
+																				.popup(
+																						'destroy');
+																	}
+																},
+																{
+																	caption : 'Cancel',
+																	onClick : function(
+																			evt) {
+																		$(
+																				'body')
+																				.popup(
+																						'destroy');
+																	}
+																} ],
+														content : content,
+														afterInit : function() {
+															componentHandler
+																	.upgradeElements($(
+																			'.mdl-textfield,.mdl-checkbox')
+																			.get());
+															getmdlSelect
+																	.init('.getmdl-select');
+														}
+													});
+								}
+
+								//	getmdlSelect
+								//	addInputPopup();
+								$('#inputs').on(
+										'click',
+										'.mdl-chip--deletable button',
+										function(evt) {
+											$(evt.target).closest(
+													'.mdl-chip--deletable')
+													.remove();
+										});
+								
+								$('#logic .mdl-card__content').expressionEditor();
 							});
-							$('#inputs .mdl-chip:last').data(inputJson);
-							$('body').popup('destroy');
-						}},
-						{caption : 'Cancel',onClick:function(evt){
-							$('body').popup('destroy');
-						}}
-							],
-					content : content,
-					afterInit : function(){
-						componentHandler.upgradeElements($('.mdl-textfield,.mdl-checkbox').get());
-						getmdlSelect.init('.getmdl-select');
-						
-					}
-				});
-			}
-			
-	
-		//	getmdlSelect
-		//	addInputPopup();
-		$('#inputs').on('click','.mdl-chip--deletable button',function(evt){
-			$(evt.target).closest('.mdl-chip--deletable').remove();
-		});
-	});
-	
-	</script>
+		</script>
 </body>
 </html>

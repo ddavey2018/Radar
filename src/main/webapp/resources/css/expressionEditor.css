@@ -1,0 +1,48 @@
+#cursor input{
+	border:none;
+	outline: none;
+	font-size:3em;
+}
+
+#cursor{
+	float:left;
+}
+
+
+.search-results{
+	position: absolute;
+	width:200px;
+	    min-height: inherit;
+}
+
+.search-results ul{
+	margin:0;
+}
+
+.search-results .mdl-list__item{
+	min-height:1em;
+	padding: 7px;
+}
+
+.search-results .selected,.search-results .mdl-list__item:hover{
+	background-color:#e0e0e0;
+}
+
+
+.brackets{
+	border:1px solid;
+	border-radius: 5px;
+	height: 2em;
+	min-width: 4em;
+}
+
+.if span,.brackets{
+	float:left;
+	height: 2em;
+}
+
+.if span{
+	vertical-align:middle;
+	line-height: 2em;
+}
+
